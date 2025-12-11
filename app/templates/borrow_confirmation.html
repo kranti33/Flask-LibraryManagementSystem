@@ -1,0 +1,8 @@
+<h2>Borrow Confirmed!</h2>
+<img src="{{ url_for('static', filename='images/books/' + (borrow.book.cover_image or 'default.png')) }}" alt="{{ borrow.book.title }}" style="width:200px;height:300px;">
+<h3>{{ borrow.book.title }}</h3>
+<p><strong>Author:</strong> {{ borrow.book.author }}</p>
+<p><strong>Genre:</strong> {{ borrow.book.genre }}</p>
+<p><strong>Borrowed On:</strong> {{ borrow.borrow_date.strftime('%d %b %Y') }}</p>
+<p><strong>Due Date:</strong> {{ due_date.strftime('%d %b %Y') }}</p>
+<a href="{{ url_for('main.home') }}" class="btn btn-primary mt-3">Back to Library</a>

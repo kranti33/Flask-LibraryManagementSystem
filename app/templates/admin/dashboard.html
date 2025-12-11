@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body class="p-5">
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <a href="{{ url_for('main.home') }}" class="btn btn-secondary mb-3">Back to Home</a>
+        <a href="{{ url_for('admin.add_book') }}" class="btn btn-success mb-3">Add New Book</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.genre }}</td>
+                    <td>
+                        <a href="{{ url_for('admin.edit_book', book_id=book.id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{ url_for('admin.delete_book', book_id=book.id) }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

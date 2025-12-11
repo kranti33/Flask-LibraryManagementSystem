@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-container d-flex justify-content-center align-items-center vh-100">
+    <div class="login-box p-4 rounded shadow">
+        <h2 class="text-center mb-4">Register</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control") }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.confirm_password.label(class="form-label") }}
+                {{ form.confirm_password(class="form-control") }}
+            </div>
+            
+            <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+        
+        <p class="text-center mt-3">
+            Already have an account? <a href="{{ url_for('auth.login') }}">Login</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
